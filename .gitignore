@@ -2,3 +2,4 @@ emall.iml
 .idea/
 .gradle/
 build/
+out/

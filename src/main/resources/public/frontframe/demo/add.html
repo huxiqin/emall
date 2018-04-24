@@ -1,0 +1,199 @@
+
+<html>
+<head>
+
+    <title>Title</title>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="../../statics/libs/jquery-1.7.2.js"></script>
+
+    <link rel="stylesheet" href="../../statics/css/font-awesome.min.css">
+    <!--layui ztree样式-->
+    <link rel="stylesheet" href="../../statics/plugins/layui/css/layui.css" media="all">
+    <script src="../../statics/plugins/layer/layer.js"></script>
+    <script src="../../statics/plugins/layui/layui.js"></script>
+    <script src="../../statics/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <link rel="stylesheet" href="../../statics/plugins/ztree/css/metroStyle/metroStyle.css">
+    <!--js组件-->
+    <script src="../../common/js/pageGrid.js"></script>
+    <script src="../../common/js/selectTool.js"></script>
+    <script src="../../common/js/radioTool.js"></script>
+    <script src="../../common/js/checkboxTool.js"></script>
+    <script src="../../common/js/treeTool.js"></script>
+    <script src="../../common/js/labelTool.js"></script>
+    <script src="../../common/js/linkSelectTool.js"></script>
+    <script src="../../common/js/uploadTool.js"></script>
+    <script src="../../common/js/HuploadTool.js"></script>
+    <script src="../../common/js/tplTool.js"></script>
+    <script src="../../common/js/editGrid.js"></script>
+    <!--全局-->
+    <script src="../../common/js/whole/cyLayer.js"></script>
+    <script src="../../common/js/whole/common.js"></script>
+    <script src="../../common/js/whole/setting.js"></script>
+    <script src="../../common/js/whole/utils.js"></script>
+    <script src="../../common/js/whole/monitor.js"></script>
+    <!--样式-->
+    <link rel="stylesheet" href="../../common/css/cyStyle.css">
+    <link rel="stylesheet" href="../../common/css/cyType.css">
+
+
+</head>
+<body>
+<div class="layui-field-box">
+    <form class="layui-form" action="">
+        <!--<span>选择产品类目：</span>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品类目</label>
+            <div class="layui-input-inline">
+                <select id="l1" name="l1" lay-filter="l1">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select id="l2" name="l2" lay-filter="l2">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+            <!--<div class="layui-input-inline">-->
+                <!--<select id="l3" name="quiz3">-->
+                    <!--<option value="">请选择县/区</option>-->
+                    <!--<option value="西湖区">西湖区</option>-->
+                    <!--<option value="余杭区">余杭区</option>-->
+                    <!--<option value="拱墅区">临安市</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="商品名称" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品摘要</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">价格范围</label>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否上架</label>
+            <div class="layui-input-block">
+                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">商品描述</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入描述内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        <div>
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>上传多张图片</legend>
+            </fieldset>
+
+            <div cyType="uploadTool"
+                 cyProps="url:'/getData/upload/',value:'../../statics/img/cy/weixin.jpg,../../statics/img/cy/zhifubao.jpg' ,name:'files[]',btnName:'上传多张图片',multiple:'true',type:'img'"></div>
+
+        </div>
+
+        <div class="page-footer">
+            <div class="btn-list">
+                <div class="btnlist">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit" data-url="/student/save"><i class="fa fa-floppy-o">&nbsp;</i>保存</button>
+                    <button class="layui-btn" onclick="$t.closeWindow();"><i class="fa fa-undo">&nbsp;</i>返回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    layui.use(['form'], function(){
+        var form = layui.form;
+        $('#l1').empty().append('<option value="0">请选择</option>');
+        $('#l2').empty().append('<option value="0">请选择</option>');
+        $.ajax({
+            type: "get",
+            url: "/categories",
+            cache : false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.success){
+                    for(var i=0;i<data.data.length;i++){
+                        $('#l1').append('<option value='+data.data[i].id+'>'+data.data[i].catName+'</option>')
+                    }
+                    form.render('select');
+                }
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+
+        form.on('select(l1)', function(data){
+            if(data.value==0){
+                $('#l2').empty().append('<option value="0">请选择</option>');
+                form.render('select');
+                return;
+            }
+            $('#l2').empty();
+            $.ajax({
+                type: "get",
+                url: "/categories/"+data.value,
+                cache : false,
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success){
+                        for(var i=0;i<data.data.length;i++){
+                            $('#l2').append('<option value='+data.data[i].id+'>'+data.data[i].catName+'</option>')
+                        }
+                        form.render('select');
+                    }
+                }, error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+
+
+        //监听提交
+        form.on('submit(submit)', function(data){
+            $t.closeWindow();
+            Msg.success("添加成功");
+            return false;
+        });
+
+    });
+
+
+    //start 图片上传代码
+    // layui.use('element', function () {
+    // });
+
+
+    //end 图片上传代码
+
+</script>
+</body>
+</html>

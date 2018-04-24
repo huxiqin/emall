@@ -2,9 +2,21 @@ group 'com.xzf.org'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'groovy'
+
+
 apply plugin: 'war'
 
+
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+[compileGroovy]*.options*.encoding='UTF-8'
+
+
+war {
+    archiveName 'ROOT.war'
+
+}
 
 repositories {
     mavenCentral()
@@ -13,10 +25,20 @@ repositories {
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     compile "com.sparkjava:spark-core:2.7.1"
-    compile 'mysql:mysql-connector-java:5.1.38'
     compile 'org.sql2o:sql2o:1.5.4'
     compile 'mysql:mysql-connector-java:6.0.6'
 
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.0'
+
+    compile 'org.apache.commons:commons-lang3:3.7'
+
+    compile 'ch.qos.logback:logback-classic:1.1.11'
+    compile 'ch.qos.logback:logback-core:1.1.11'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
+
+
 }
